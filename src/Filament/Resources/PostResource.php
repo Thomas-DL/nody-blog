@@ -150,35 +150,35 @@ class PostResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-            SelectFilter::make('is_published')
+                SelectFilter::make('is_published')
                     ->label('Status')
                     ->options([
                         'draft' => 'Draft',
                         'reviewing' => 'Reviewing',
                         'published' => 'Published',
                     ]),
-            SelectFilter::make('tag_id')
+                SelectFilter::make('tag_id')
                     ->relationship('tags', 'name')
                     ->label('Tags')
                     ->preload()
                     ->multiple()
                     ->searchable(),
-            SelectFilter::make('category_id')
+                SelectFilter::make('category_id')
                     ->relationship('category', 'name')
                     ->label('Category')
                     ->preload()
                     ->searchable(),
-        ])
+            ])
             ->actions([
-            EditAction::make(),
-            ViewAction::make(),
-            DeleteAction::make(),
-        ])
+                EditAction::make(),
+                ViewAction::make(),
+                DeleteAction::make(),
+            ])
             ->bulkActions([
-            BulkActionGroup::make([
+                BulkActionGroup::make([
                     DeleteBulkAction::make(),
-            ]),
-        ]);
+                ]),
+            ]);
     }
 
     public static function getPages(): array
