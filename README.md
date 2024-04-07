@@ -22,6 +22,14 @@ Use install command tu publish migrations ans config files:
 php artisan nody-blog:install
 ```
 
+Publish spatie media-library files and run migrate
+
+```bash
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="medialibrary-migrations"
+
+php artisan migrate
+```
+
 Setup media disk for posts thumbnails in filesystems.php config file:
 
 ```bash
