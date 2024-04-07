@@ -1,13 +1,12 @@
 # A Nody package wich add blog module to Nody's boilerplate
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nody/nody-blog.svg?style=flat-square)](https://packagist.org/packages/nody/nody-blog)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/nody/nody-blog/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/nody/nody-blog/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/nody/nody-blog/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/nody/nody-blog/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/nody/nody-blog.svg?style=flat-square)](https://packagist.org/packages/nody/nody-blog)
 
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Install a ready to use blog module for Nody boilerplate
 
 ## Installation
 
@@ -17,52 +16,33 @@ You can install the package via composer:
 composer require nody/nody-blog
 ```
 
-You can publish and run the migrations with:
+Use install command tu publish migrations ans config files:
 
 ```bash
-php artisan vendor:publish --tag="nody-blog-migrations"
-php artisan migrate
+php artisan nody-blog:install
 ```
 
-You can publish the config file with:
+Setup media disk for posts thumbnails in filesystems.php config file:
 
 ```bash
-php artisan vendor:publish --tag="nody-blog-config"
+        'media' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images'),
+            'url' => env('APP_URL') . '/storage/images',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 ```
 
-Optionally, you can publish the views using
+Create images folder in storage folder and make a symbolic link
 
 ```bash
-php artisan vendor:publish --tag="nody-blog-views"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-## Usage
-
-```php
-$nodyBlog = new Nody\NodyBlog();
-echo $nodyBlog->echoPhrase('Hello, Nody!');
-```
-
-## Testing
-
-```bash
-composer test
+php artisan storage:link
 ```
 
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
@@ -70,8 +50,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Nody](https://github.com/Thomas-DL)
-- [All Contributors](../../contributors)
+- [Thomas-DL](https://github.com/Thomas-DL)
 
 ## License
 
