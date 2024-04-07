@@ -10,11 +10,11 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Nody\NodyBlog\Commands\NodyBlogCommand;
+use Nody\NodyBlog\Testing\TestsNodyBlog;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Nody\NodyBlog\Commands\NodyBlogCommand;
-use Nody\NodyBlog\Testing\TestsNodyBlog;
 
 class NodyBlogServiceProvider extends PackageServiceProvider
 {
