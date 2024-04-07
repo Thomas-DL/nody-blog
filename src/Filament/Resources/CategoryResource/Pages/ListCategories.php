@@ -3,17 +3,17 @@
 namespace Nody\NodyBlog\Filament\Resources\CategoryResource\Pages;
 
 use Filament\Actions;
-use Nody\NodyBlog\Filament\Resources\CategoryResource;
 use Filament\Resources\Pages\ListRecords;
+use Nody\NodyBlog\Filament\Resources\CategoryResource;
 
 class ListCategories extends ListRecords
 {
-  protected static string $resource = CategoryResource::class;
+    protected static string $resource = CategoryResource::class;
 
-  protected function getHeaderActions(): array
-  {
-    return [
-      Actions\CreateAction::make(),
-    ];
-  }
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\CreateAction::make(),
+        ];
+    }
 }
