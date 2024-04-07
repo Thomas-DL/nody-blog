@@ -36,7 +36,7 @@ class NodyBlogServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('nody/nody-blog');
+                    ->askToStarRepoOnGitHub('Thomas-DL/nody-blog');
             });
 
         $configFileName = $package->shortName();
