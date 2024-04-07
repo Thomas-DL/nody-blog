@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Nody\NodyBlog\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class NodyBlogCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'nody-blog';
 
     public $description = 'My command';
 

@@ -1,20 +1,28 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Nody\NodyBlog;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Nody\NodyBlog\Filament\Resources\CategoryResource;
+use Nody\NodyBlog\Filament\Resources\PostResource;
+use Nody\NodyBlog\Filament\Resources\TagResource;
 
-class SkeletonPlugin implements Plugin
+class NodyBlogPlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'skeleton';
+        return 'nody-blog';
     }
 
     public function register(Panel $panel): void
     {
-        //
+        $panel
+            ->resources([
+                CategoryResource::class,
+                PostResource::class,
+                TagResource::class,
+            ]);
     }
 
     public function boot(Panel $panel): void
