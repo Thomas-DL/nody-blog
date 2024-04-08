@@ -32,7 +32,7 @@ php artisan migrate
 
 Setup media disk for posts thumbnails in filesystems.php config file:
 
-```bash
+```php
         'media' => [
             'driver' => 'local',
             'root' => storage_path('app/public/images'),
@@ -46,6 +46,35 @@ Create images folder in storage folder and make a symbolic link
 
 ```bash
 php artisan storage:link
+```
+
+Make relation betwteen post and user model in User.php
+
+```php
+    use Nody\NodyBlog\Models\Post;
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+```
+
+Define plugin in Filament AdminPanelProvider:
+
+```php
+    use Nody\NodyBlog\NodyBlogPlugin;
+
+    ->plugin(new NodyBlogPlugin());
+```
+
+Define "Blog" group in navigation:
+
+```php
+    $builder->group('Blog', [
+        ...CategoryResource::getNavigationItems(),
+        ...PostResource::getNavigationItems(),
+        ...TagResource::getNavigationItems(),
+    ]);
 ```
 
 ## Changelog

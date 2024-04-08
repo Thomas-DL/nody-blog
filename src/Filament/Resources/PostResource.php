@@ -16,6 +16,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -127,6 +128,14 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('user.profile_photo_path')
+                    ->label('Author')
+                    ->default(function ($record) {
+                        $initial = $record->user->name ? $record->user->name[0] : 'A';
+
+                        return 'https://ui-avatars.com/api/?name=' . urlencode($initial) . '&color=7F9CF5&background=EBF4FF';
+                    })
+                    ->circular(),
                 TextColumn::make('title')
                     ->label('Title')
                     ->searchable(),
