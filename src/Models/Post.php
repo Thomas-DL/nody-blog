@@ -51,6 +51,7 @@ class Post extends Model implements HasMedia
     public function user()
     {
         $userModel = config('nody-blog.user_model');
+
         return $this->belongsTo($userModel);
     }
 }
