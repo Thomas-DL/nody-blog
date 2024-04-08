@@ -2,16 +2,9 @@
 
 namespace Nody\NodyBlog;
 
-use Filament\Support\Assets\AlpineComponent;
-use Filament\Support\Assets\Asset;
-use Filament\Support\Assets\Css;
-use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
-use Illuminate\Filesystem\Filesystem;
-use Livewire\Features\SupportTesting\Testable;
 use Nody\NodyBlog\Commands\NodyBlogCommand;
-use Nody\NodyBlog\Testing\TestsNodyBlog;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -64,11 +57,6 @@ class NodyBlogServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // Asset Registration
-        FilamentAsset::register(
-            $this->getAssets(),
-            $this->getAssetPackageName()
-        );
 
         FilamentAsset::registerScriptData(
             $this->getScriptData(),
@@ -77,35 +65,11 @@ class NodyBlogServiceProvider extends PackageServiceProvider
 
         // Icon Registration
         FilamentIcon::register($this->getIcons());
-
-        // Handle Stubs
-        if (app()->runningInConsole()) {
-            foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
-                $this->publishes([
-                    $file->getRealPath() => base_path("stubs/nody-blog/{$file->getFilename()}"),
-                ], 'nody-blog-stubs');
-            }
-        }
-
-        // Testing
-        Testable::mixin(new TestsNodyBlog());
     }
 
     protected function getAssetPackageName(): ?string
     {
         return 'nody/nody-blog';
-    }
-
-    /**
-     * @return array<Asset>
-     */
-    protected function getAssets(): array
-    {
-        return [
-            // AlpineComponent::make('nody-blog', __DIR__ . '/../resources/dist/components/nody-blog.js'),
-            Css::make('nody-blog-styles', __DIR__ . '/../resources/dist/nody-blog.css'),
-            Js::make('nody-blog-scripts', __DIR__ . '/../resources/dist/nody-blog.js'),
-        ];
     }
 
     /**
