@@ -45,4 +45,6 @@ const defaultOptions = {
 
 compile({
     ...defaultOptions,
+    entryPoints: ['./resources/js/index.js'],
+    outfile: './resources/dist/nody-blog.js',
 })
