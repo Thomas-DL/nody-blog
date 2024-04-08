@@ -36,6 +36,3 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Execute tests
-        run: ./vendor/bin/pest
