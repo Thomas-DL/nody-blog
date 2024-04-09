@@ -3,9 +3,10 @@
 namespace Nody\NodyBlog;
 
 use Livewire\Livewire;
+use App\Livewire\PostComments;
 use Nody\NodyBlog\Livewire\GetPosts;
+
 use Nody\NodyBlog\Livewire\PostLike;
-use Nody\NodyBlog\Models\PostComment;
 use Spatie\LaravelPackageTools\Package;
 use Filament\Support\Facades\FilamentIcon;
 use Filament\Support\Facades\FilamentAsset;
@@ -74,7 +75,7 @@ class NodyBlogServiceProvider extends PackageServiceProvider
         // Livewire components
         Livewire::component('get-posts', GetPosts::class);
         Livewire::component('post-like', PostLike::class);
-        Livewire::component('post-comment', PostComment::class);
+        Livewire::component('post-comments', PostComments::class);
     }
 
     protected function getAssetPackageName(): ?string

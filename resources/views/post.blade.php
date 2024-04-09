@@ -11,6 +11,7 @@
             <p class="text-base font-semibold leading-7 text-indigo-600">{{ $post->category->name }}</p>
             <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
                 {{ $post->title }}</h1>
+            <span class="text-sm text-gray-500 dark:text-white">| {{ $post->getReadingTime() }} min read</span>
             <p class="mt-6 text-xl leading-8 text-gray-900 dark:text-white">{{ $post->excerpt }}</p>
             <figure class="mt-16">
                 <img class="aspect-video rounded-xl bg-gray-50 object-cover" src="{{ $post->getThumbnail() }}"
@@ -26,7 +27,7 @@
                 </div>
             </div>
             <div class="mt-12">
-                <livewire:post-comment :key="'comments' . $post->id" :$post />
+                <livewire:post-comments :key="'comments' . $post->id" :$post />
             </div>
         </div>
     </div>

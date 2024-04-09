@@ -83,4 +83,11 @@ class Post extends Model implements HasMedia
     {
         return $this->getFirstMediaUrl('Blog', 'thumb');
     }
+
+    public function getReadingTime()
+    {
+        $mins = round(str_word_count($this->body) / 250);
+
+        return ($mins < 1) ? 1 : $mins;
+    }
 }

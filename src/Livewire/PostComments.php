@@ -41,6 +41,6 @@ class PostComments extends Component
 
   public function render()
   {
-    return view('nody-blog::livewire.post-comment');
+    return view('nody-blog::livewire.post-comments');
   }
 }
