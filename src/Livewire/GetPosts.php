@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class GetPosts extends Component
 {
-  public function render()
-  {
-    return view('nody-blog::livewire.get-posts');
-  }
+    public function render()
+    {
+        return view('nody-blog::livewire.get-posts');
+    }
 }
