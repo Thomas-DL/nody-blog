@@ -22,9 +22,11 @@
             <hr class="my-12">
             <div class="flex justify-between">
                 <div class="flex gap-x-4">
-                    <span>1</span>
-                    <x-heroicon-o-heart class="w-6 h-6 text-gray-600 dark:text-gray-100" />
+                    <livewire:post-like :key="'like-' . $post->id" :$post />
                 </div>
+            </div>
+            <div class="mt-12">
+                <livewire:post-comment :key="'comments' . $post->id" :$post />
             </div>
         </div>
     </div>

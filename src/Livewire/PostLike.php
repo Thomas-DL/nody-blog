@@ -7,23 +7,23 @@ use Nody\NodyBlog\Models\Post;
 
 class PostLike extends Component
 {
-    public Post $post;
+  public Post $post;
 
-    public function toggleLike()
-    {
-        $user = auth()->User::class;
+  public function toggleLike()
+  {
+    $user = auth()->user();
 
-        if ($user->hasLiked($this->post)) {
-            $user->likes()->detach($this->post);
+    if ($user->hasLiked($this->post)) {
+      $user->likes()->detach($this->post);
 
-            return;
-        }
-
-        $user->likes()->attach($this->post);
+      return;
     }
 
-    public function render()
-    {
-        return view('nody-blog::livewire.post-like');
-    }
+    $user->likes()->attach($this->post);
+  }
+
+  public function render()
+  {
+    return view('nody-blog::livewire.post-like');
+  }
 }
