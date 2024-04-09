@@ -2,12 +2,14 @@
 
 namespace Nody\NodyBlog;
 
-use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Facades\FilamentIcon;
-use Nody\NodyBlog\Commands\NodyBlogCommand;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Livewire\Livewire;
+use Nody\NodyBlog\Livewire\GetPosts;
 use Spatie\LaravelPackageTools\Package;
+use Filament\Support\Facades\FilamentIcon;
+use Filament\Support\Facades\FilamentAsset;
+use Nody\NodyBlog\Commands\NodyBlogCommand;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 
 class NodyBlogServiceProvider extends PackageServiceProvider
 {
@@ -66,6 +68,9 @@ class NodyBlogServiceProvider extends PackageServiceProvider
 
         // Icon Registration
         FilamentIcon::register($this->getIcons());
+
+        // Livewire components
+        Livewire::component('get-posts', GetPosts::class);
     }
 
     protected function getAssetPackageName(): ?string

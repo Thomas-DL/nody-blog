@@ -6,6 +6,6 @@ class BlogController
 {
   public function index()
   {
-    return view('nody-blog::blog.index');
+    return view('nody-blog::blog');
   }
 }

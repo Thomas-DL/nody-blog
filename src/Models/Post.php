@@ -12,6 +12,8 @@ class Post extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    private $userModel;
+
     /**
      * Register the conversions that should be performed.
      *
@@ -50,8 +52,23 @@ class Post extends Model implements HasMedia
 
     public function user()
     {
-        $userModel = config('nody-blog.user_model');
+        $this->userModel = config('nody-blog.user_model');
+        return $this->belongsTo($this->userModel);
+    }
 
-        return $this->belongsTo($userModel);
+    public function likes()
+    {
+        $this->userModel = config('nody-blog.user_model');
+        return $this->belongsToMany($this->userModel, 'post_like')->withTimestamps();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
     }
 }
