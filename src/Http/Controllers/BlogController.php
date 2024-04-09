@@ -14,6 +14,7 @@ class BlogController
     public function show($categorySlug, $postSlug)
     {
         $post = Post::Published()->where('slug', $postSlug)->firstOrFail();
+
         return view('nody-blog::post', compact('post'));
     }
 }
