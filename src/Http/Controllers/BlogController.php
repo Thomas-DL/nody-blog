@@ -8,4 +8,9 @@ class BlogController
     {
         return view('nody-blog::blog');
     }
+
+    public function show($slug)
+    {
+        return view('nody-blog::post');
+    }
 }

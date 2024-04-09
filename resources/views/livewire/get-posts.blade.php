@@ -1,6 +1,6 @@
 <div class="bg-white dark:bg-gray-900 pt-16">
     {{-- Post List Component --}}
-    @if ($posts->count() <= 0)
+    @if ($this->posts()->count() <= 0)
         <div class="pt-10">
             <div class="flex px-12 mb-10 justify-center max-w-lg lg:px-0 mx-4 sm:mx-auto">
                 <div class="relative w-full mt-2">
@@ -24,7 +24,7 @@
             <div>
                 <div
                     class="mx-auto px-12 mt-16 mx-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:px-0 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    @foreach ($posts as $post)
+                    @foreach ($this->posts() as $post)
                         @php
                             $thumbnail = $post->getFirstMediaUrl('Blog', 'thumb');
                         @endphp
@@ -45,7 +45,7 @@
                                 <div class="group relative">
                                     <h3
                                         class="mt-3 text-lg font-semibold leading-6 text-gray-900 dark:text-white group-hover:text-gray-200">
-                                        <a href="#">
+                                        <a href="{{ route('blog.show', [$post->category->slug, $post->slug]) }}">
                                             <span class="absolute inset-0"></span>
                                             {{ $post->title }}
                                         </a>

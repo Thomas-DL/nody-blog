@@ -78,4 +78,9 @@ class Post extends Model implements HasMedia
     {
         return $this->created_at->format('d M Y');
     }
+
+    public function getThumbnail()
+    {
+        return $this->getFirstMediaUrl('Blog', 'thumb');
+    }
 }
