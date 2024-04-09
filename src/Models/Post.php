@@ -53,12 +53,14 @@ class Post extends Model implements HasMedia
     public function user()
     {
         $this->userModel = config('nody-blog.user_model');
+
         return $this->belongsTo($this->userModel);
     }
 
     public function likes()
     {
         $this->userModel = config('nody-blog.user_model');
+
         return $this->belongsToMany($this->userModel, 'post_like')->withTimestamps();
     }
 

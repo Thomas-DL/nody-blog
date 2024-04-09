@@ -6,23 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostComment extends Model
 {
+    public $userModel;
 
-  public $userModel;
+    protected $fillable = [
+        'user_id',
+        'post_id',
+        'comment',
+    ];
 
-  protected $fillable = [
-    'user_id',
-    'post_id',
-    'comment',
-  ];
+    public function user()
+    {
+        $this->userModel = config('nody-blog.user_model');
 
-  public function user()
-  {
-    $this->userModel = config('nody-blog.user_model');
-    return $this->belongsTo($this->userModel);
-  }
+        return $this->belongsTo($this->userModel);
+    }
 
-  public function post()
-  {
-    return $this->belongsTo(Post::class);
-  }
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }
