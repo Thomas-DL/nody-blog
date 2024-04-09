@@ -2,10 +2,10 @@
 
 namespace Nody\NodyBlog\Livewire;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
-use Nody\NodyBlog\Models\Post;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
+use Livewire\Component;
+use Nody\NodyBlog\Models\Post;
 
 class GetPosts extends Component
 {
@@ -25,7 +25,6 @@ class GetPosts extends Component
      *
      * @param  string  $search
      */
-
     public $search; // String
 
     /**
@@ -52,7 +51,7 @@ class GetPosts extends Component
     #[Computed()]
     public function posts()
     {
-        if (!empty($this->search)) {
+        if (! empty($this->search)) {
             return Post::published()->where(function ($query) {
                 $query->where('title', 'like', "%{$this->search}%")
                     ->orWhere('content', 'like', "%{$this->search}%")
