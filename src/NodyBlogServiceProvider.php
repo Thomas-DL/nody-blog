@@ -6,9 +6,7 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Livewire\Livewire;
 use Nody\NodyBlog\Livewire\GetPosts;
-
 use Nody\NodyBlog\Livewire\PostLike;
-use Nody\NodyBlog\Models\PostComment;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
