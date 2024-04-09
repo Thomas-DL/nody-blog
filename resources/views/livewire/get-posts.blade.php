@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-gray-900 pt-16">
+<div>
     {{-- Post List Component --}}
     @if ($this->posts()->count() <= 0)
         <div class="pt-10">
@@ -57,9 +57,9 @@
                     @endforeach
 
                 </div>
-                @if ($this->showLoadMore && $this->showLoadMore === 'true')
+                @if ($this->showLoadMore && $this->showLoadMore === '1' && $this->posts()->count() >= $this->postsCount)
                     <div class="mt-10 pb-10 flex justify-center">
-                        <x-button type="button" color="primary" text="Load more" size="md"
+                        <x-shared.button type="button" color="primary" text="Load more" size="md"
                             wire:click="loadMore" />
                     </div>
                 @endif

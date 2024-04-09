@@ -2,9 +2,10 @@
 
 namespace Nody\NodyBlog\Livewire;
 
-use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Nody\NodyBlog\Models\Post;
+use Livewire\Attributes\Computed;
 
 class GetPosts extends Component
 {
@@ -18,22 +19,14 @@ class GetPosts extends Component
     public $postsCount; // Integer
 
     /**
-     * The posts to display.
+     * The search query.
      *
-     * @var mixed
+     * @var string
      *
-     * @param  mixed  $categories
+     * @param  string  $search
      */
-    public $categories; // Array
 
-    /**
-     * The posts to display.
-     *
-     * @var mixed
-     *
-     * @param  mixed  $tags
-     */
-    public $tags; // Array
+    public $search; // String
 
     /**
      * Show load more button
@@ -44,10 +37,33 @@ class GetPosts extends Component
      */
     public $showLoadMore; // Boolean
 
+    public function loadMore()
+    {
+        $this->postsCount += 3;
+    }
+
+    #[On('search')]
+    public function updateSearch($search)
+    {
+        $this->search = $search;
+        $this->resetPage();
+    }
+
     #[Computed()]
     public function posts()
     {
-        return Post::published()->latest()->take($this->postsCount)->get();
+        if (!empty($this->search)) {
+            return Post::published()->where(function ($query) {
+                $query->where('title', 'like', "%{$this->search}%")
+                    ->orWhere('content', 'like', "%{$this->search}%")
+                    ->orWhere('excerpt', 'like', "%{$this->search}%");
+            })
+                ->latest()
+                ->take($this->postsCount)
+                ->get();
+        } else {
+            return Post::published()->latest()->take($this->postsCount)->get();
+        }
     }
 
     public function render()
