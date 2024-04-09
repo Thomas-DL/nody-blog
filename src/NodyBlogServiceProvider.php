@@ -3,6 +3,7 @@
 namespace Nody\NodyBlog;
 
 use Livewire\Livewire;
+use App\Livewire\PostComments;
 use Nody\NodyBlog\Livewire\GetPosts;
 use Nody\NodyBlog\Livewire\PostLike;
 use Spatie\LaravelPackageTools\Package;
