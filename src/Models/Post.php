@@ -73,4 +73,9 @@ class Post extends Model implements HasMedia
     {
         return $query->where('is_published', true);
     }
+
+    public function formatDate()
+    {
+        return $this->created_at->format('d M Y');
+    }
 }
