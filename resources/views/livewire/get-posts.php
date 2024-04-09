@@ -1,0 +1,1 @@
+<h1>Mon composant get posts</h1>

@@ -24,6 +24,7 @@ class NodyBlogServiceProvider extends PackageServiceProvider
          */
         $package->name(static::$name)
             ->hasCommands($this->getCommands())
+            ->hasRoute('web', $this->getRoutes())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()
@@ -95,7 +96,9 @@ class NodyBlogServiceProvider extends PackageServiceProvider
      */
     protected function getRoutes(): array
     {
-        return [];
+        return [
+            __DIR__ . '/../routes/web.php',
+        ];
     }
 
     /**
