@@ -2,10 +2,10 @@
 
 namespace Nody\NodyBlog;
 
+use App\Livewire\PostComments;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Livewire\Livewire;
-use App\Livewire\PostComments;
 use Nody\NodyBlog\Livewire\GetPosts;
 use Nody\NodyBlog\Livewire\PostLike;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
