@@ -21,9 +21,10 @@
                         class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
             </div>
-            <div>
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div
-                    class="mx-auto px-12 mt-16 mx-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:px-0 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+
                     @foreach ($this->posts() as $post)
                         <article class="flex flex-col items-start">
                             <div class="relative w-full">
