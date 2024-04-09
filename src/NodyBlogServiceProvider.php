@@ -2,16 +2,16 @@
 
 namespace Nody\NodyBlog;
 
+use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Facades\FilamentIcon;
 use Livewire\Livewire;
+use Nody\NodyBlog\Commands\NodyBlogCommand;
 use Nody\NodyBlog\Livewire\GetPosts;
 use Nody\NodyBlog\Livewire\PostLike;
 use Nody\NodyBlog\Models\PostComment;
-use Spatie\LaravelPackageTools\Package;
-use Filament\Support\Facades\FilamentIcon;
-use Filament\Support\Facades\FilamentAsset;
-use Nody\NodyBlog\Commands\NodyBlogCommand;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class NodyBlogServiceProvider extends PackageServiceProvider
 {
