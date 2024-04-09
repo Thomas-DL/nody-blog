@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace Nody\NodyBlog\Livewire;
 
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Rule;
@@ -10,37 +10,37 @@ use Nody\NodyBlog\Models\Post;
 
 class PostComments extends Component
 {
-    use WithPagination;
+  use WithPagination;
 
-    public Post $post;
+  public Post $post;
 
-    #[Rule('required|min:3|max:200')]
-    public string $comment;
+  #[Rule('required|min:3|max:200')]
+  public string $comment;
 
-    public function postComment()
-    {
-        if (auth()->guest()) {
-            return;
-        }
-
-        $this->validateOnly('comment');
-
-        $this->post->comments()->create([
-            'comment' => $this->comment,
-            'user_id' => auth()->id(),
-        ]);
-
-        $this->reset('comment');
+  public function postComment()
+  {
+    if (auth()->guest()) {
+      return;
     }
 
-    #[Computed()]
-    public function comments()
-    {
-        return $this?->post?->comments()->with('user')->latest()->paginate(5);
-    }
+    $this->validateOnly('comment');
 
-    public function render()
-    {
-        return view('nody-blog::livewire.post-comments');
-    }
+    $this->post->comments()->create([
+      'comment' => $this->comment,
+      'user_id' => auth()->id(),
+    ]);
+
+    $this->reset('comment');
+  }
+
+  #[Computed()]
+  public function comments()
+  {
+    return $this?->post?->comments()->with('user')->latest()->paginate(5);
+  }
+
+  public function render()
+  {
+    return view('nody-blog::livewire.post-comments');
+  }
 }
