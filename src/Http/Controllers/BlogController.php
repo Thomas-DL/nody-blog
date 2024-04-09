@@ -2,6 +2,8 @@
 
 namespace Nody\NodyBlog\Http\Controllers;
 
+use Nody\NodyBlog\Models\Post;
+
 class BlogController
 {
     public function index()
@@ -9,8 +11,9 @@ class BlogController
         return view('nody-blog::blog');
     }
 
-    public function show($slug)
+    public function show($categorySlug, $postSlug)
     {
-        return view('nody-blog::post');
+        $post = Post::Published()->where('slug', $postSlug)->firstOrFail();
+        return view('nody-blog::post', compact('post'));
     }
 }

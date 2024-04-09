@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="px-6 py-32 lg:px-8">
+    <div class="px-6 py-32 lg:px-8 bg-white dark:bg-gray-900">
         <div class="mx-auto max-w-3xl text-base leading-7 text-gray-700">
             @auth
                 <div class="flex justify-end">
@@ -21,5 +21,4 @@
         </div>
     </div>
 
-    <livewire:featured-post :category="$post->category->id" :currentPost="$post->id" />
 </x-guest-layout>

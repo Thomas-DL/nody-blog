@@ -25,13 +25,10 @@
                 <div
                     class="mx-auto px-12 mt-16 mx-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:px-0 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     @foreach ($this->posts() as $post)
-                        @php
-                            $thumbnail = $post->getFirstMediaUrl('Blog', 'thumb');
-                        @endphp
                         <article class="flex flex-col items-start">
                             <div class="relative w-full">
-                                <img src="{{ $thumbnail }}" width="1200" height="630" class="w-full rounded-lg"
-                                    alt="">
+                                <img src="{{ $post->getThumbnail() }}" width="1200" height="630"
+                                    class="w-full rounded-lg" alt="">
                                 <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-300/10"></div>
                             </div>
                             <div class="max-w-xl">
