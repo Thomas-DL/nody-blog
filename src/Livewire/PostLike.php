@@ -17,7 +17,7 @@ class PostLike extends Component
       return $this->redirect(route('login'), true);
     }
 
-    $user = auth()->user();
+    $user = auth()->User::class;
 
     if ($user->hasLiked($this->post)) {
       $user->likes()->detach($this->post);
@@ -29,6 +29,6 @@ class PostLike extends Component
 
   public function render()
   {
-    return view('nodyblog::livewire.post-like');
+    return view('nody-blog::livewire.post-like');
   }
 }
