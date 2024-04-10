@@ -18,62 +18,62 @@ use Nody\NodyBlog\Models\PostComment;
 
 class CommentResource extends Resource
 {
-  protected static ?string $model = PostComment::class;
+    protected static ?string $model = PostComment::class;
 
-  protected static ?string $navigationGroup = 'Blog';
+    protected static ?string $navigationGroup = 'Blog';
 
-  protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 4;
 
-  protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
-  protected static ?string $recordTitleAttribute = 'title';
+    protected static ?string $recordTitleAttribute = 'title';
 
-  public static function form(Form $form): Form
-  {
-    return $form
-      ->schema([
-        Select::make('user_id')
-          ->relationship('user', 'name')
-          ->searchable()
-          ->preload()
-          ->required(),
-        Select::make('post_id')
-          ->relationship('post', 'title')
-          ->searchable()
-          ->preload()
-          ->required(),
-        TextInput::make('comment')->required()->minLength(1)->maxLength(255),
-      ]);
-  }
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                Select::make('post_id')
+                    ->relationship('post', 'title')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                TextInput::make('comment')->required()->minLength(1)->maxLength(255),
+            ]);
+    }
 
-  public static function table(Table $table): Table
-  {
-    return $table
-      ->columns([
-        TextColumn::make('id'),
-        TextColumn::make('user.name'),
-        TextColumn::make('post.title'),
-        TextColumn::make('comment'),
-      ])
-      ->filters([
-        //
-      ])
-      ->actions([
-        EditAction::make(),
-      ])
-      ->bulkActions([
-        BulkActionGroup::make([
-          DeleteBulkAction::make(),
-        ]),
-      ]);
-  }
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('id'),
+                TextColumn::make('user.name'),
+                TextColumn::make('post.title'),
+                TextColumn::make('comment'),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                EditAction::make(),
+            ])
+            ->bulkActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
 
-  public static function getPages(): array
-  {
-    return [
-      'index' => ListComments::route('/'),
-      'create' => CreateComment::route('/create'),
-      'edit' => EditComment::route('/{record}/edit'),
-    ];
-  }
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListComments::route('/'),
+            'create' => CreateComment::route('/create'),
+            'edit' => EditComment::route('/{record}/edit'),
+        ];
+    }
 }

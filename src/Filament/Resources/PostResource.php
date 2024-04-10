@@ -2,30 +2,30 @@
 
 namespace Nody\NodyBlog\Filament\Resources;
 
-use Filament\Forms\Set;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
-use Nody\NodyBlog\Models\Post;
-use Filament\Resources\Resource;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Forms\Set;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\RichEditor;
-use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Actions\BulkActionGroup;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Nody\NodyBlog\Filament\Resources\PostResource\Pages\CreatePost;
 use Nody\NodyBlog\Filament\Resources\PostResource\Pages\EditPost;
 use Nody\NodyBlog\Filament\Resources\PostResource\Pages\ListPosts;
-use Nody\NodyBlog\Filament\Resources\PostResource\Pages\CreatePost;
 use Nody\NodyBlog\Filament\Resources\PostResource\RelationManagers\CommentsRelationManager;
+use Nody\NodyBlog\Models\Post;
 
 class PostResource extends Resource
 {
@@ -202,7 +202,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            CommentsRelationManager::class
+            CommentsRelationManager::class,
         ];
     }
 
