@@ -2,9 +2,9 @@
 
 namespace Nody\NodyBlog\Models;
 
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Image\Enums\CropPosition;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Enums\CropPosition;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -86,7 +86,6 @@ class Post extends Model implements HasMedia
 
         return "${likes} Likes - ${comments} Comments";
     }
-
 
     public function scopePublished($query)
     {

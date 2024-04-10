@@ -162,6 +162,7 @@ class PostResource extends Resource
                     ->getStateUsing(function ($record) {
                         $likes = $record->likes()->count();
                         $comments = $record->comments()->count();
+
                         return "${likes} likes | ${comments}  comments";
                     }),
             ])
