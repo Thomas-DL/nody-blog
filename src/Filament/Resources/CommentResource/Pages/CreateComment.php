@@ -7,17 +7,17 @@ use Nody\NodyBlog\Filament\Resources\CommentResource;
 
 class CreateComment extends CreateRecord
 {
-  protected static string $resource = CommentResource::class;
+    protected static string $resource = CommentResource::class;
 
-  protected function getRedirectUrl(): string
-  {
-    return $this->getResource()::getUrl('index');
-  }
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 
-  protected function mutateFormDataBeforeCreate(array $data): array
-  {
-    $data['user_id'] = auth()->id();
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['user_id'] = auth()->id();
 
-    return $data;
-  }
+        return $data;
+    }
 }
