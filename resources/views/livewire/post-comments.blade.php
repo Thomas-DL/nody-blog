@@ -1,11 +1,11 @@
-<div class="pt-10 mt-10 border-t border-gray-100 comments-box">
+<div class="pt-10 mt-10 border-t border-gray-100 dark:border-gray-700 comments-box">
     <h2 class="mb-5 text-2xl font-semibold text-gray-900">Discussions</h2>
     @auth
         <textarea wire:model="comment"
-            class="w-full p-4 text-sm text-gray-700 border-gray-200 rounded-lg bg-gray-50 focus:outline-none placeholder:text-gray-400"
+            class="w-full p-4 text-sm text-gray-700 dark:text-white border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 focus:outline-none placeholder:text-gray-400"
             cols="30" rows="7"></textarea>
         <button wire:click="postComment"
-            class="inline-flex items-center justify-center h-10 px-4 mt-3 font-medium tracking-wide text-white transition duration-200 bg-gray-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none">
+            class="inline-flex items-center justify-center h-10 px-4 mt-3 font-medium tracking-wide text-white transition duration-200 bg-indigo-600 rounded-lg hover:bg-indigo-500 focus:shadow-outline focus:outline-none">
             Post Comment
         </button>
     @else
@@ -18,14 +18,14 @@
                     <img class="mr-3 rounded-full w-8 h-8" src="{{ $comment->user->getProfileAvatar() }}"
                         alt="{{ $comment->user->name }}">
                     <span class="mr-1 ">{{ $comment->user->name }} </span>
-                    <span class="text-gray-500">. {{ $comment->created_at->diffForHumans() }}</span>
+                    <span class="text-gray-500 dark:text-white">. {{ $comment->created_at->diffForHumans() }}</span>
                 </div>
-                <div class="text-sm text-justify text-gray-700">
+                <div class="text-sm text-justify text-gray-700 dark:text-white">
                     {{ $comment->comment }}
                 </div>
             </div>
         @empty
-            <div class="text-center text-gray-500">
+            <div class="text-center text-gray-500 dark:text-gray-400">
                 <span> No Comments Posted</span>
             </div>
         @endforelse
