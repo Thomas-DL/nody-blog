@@ -5,6 +5,7 @@ namespace Nody\NodyBlog;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Nody\NodyBlog\Filament\Resources\CategoryResource;
+use Nody\NodyBlog\Filament\Resources\CommentResource;
 use Nody\NodyBlog\Filament\Resources\PostResource;
 use Nody\NodyBlog\Filament\Resources\TagResource;
 
@@ -22,6 +23,7 @@ class NodyBlogPlugin implements Plugin
                 CategoryResource::class,
                 PostResource::class,
                 TagResource::class,
+                CommentResource::class,
             ]);
     }
 
