@@ -20,7 +20,7 @@
             <div class="mt-10 max-w-2xl post-content text-gray-900 dark:text-white">
                 {!! $post->content !!}
             </div>
-            <hr class="my-12 dark:bg-gray-700">
+            <hr class="my-12 dark:border-gray-700">
             <div class="flex justify-between">
                 <div class="flex gap-x-4">
                     <livewire:post-like :key="'like-' . $post->id" :$post />
