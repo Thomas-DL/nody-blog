@@ -157,6 +157,13 @@ class PostResource extends Resource
                         default => 'gray',
                     })
                     ->sortable(),
+                TextColumn::make('stats')
+                    ->label('Stats')
+                    ->getStateUsing(function ($record) {
+                        $likes = $record->likes()->count();
+                        $comments = $record->comments()->count();
+                        return "${likes} likes | ${comments}  comments";
+                    }),
             ])
             ->filters([
                 SelectFilter::make('is_published')

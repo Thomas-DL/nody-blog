@@ -15,7 +15,9 @@
         @forelse($this->comments as $comment)
             <div class="comment [&:not(:last-child)]:border-b border-gray-100 py-5">
                 <div class="flex items-center mb-4 text-sm user-meta">
-                    <x-posts.author :author="$comment->user" size="sm" />
+                    <img class="mr-3 rounded-full w-8 h-8" src="{{ $comment->user->getProfileAvatar() }}"
+                        alt="{{ $comment->user->name }}">
+                    <span class="mr-1 ">{{ $comment->user->name }} </span>
                     <span class="text-gray-500">. {{ $comment->created_at->diffForHumans() }}</span>
                 </div>
                 <div class="text-sm text-justify text-gray-700">

@@ -2,9 +2,9 @@
 
 namespace Nody\NodyBlog\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Image\Enums\CropPosition;
 use Spatie\MediaLibrary\HasMedia;
+use Spatie\Image\Enums\CropPosition;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -64,10 +64,29 @@ class Post extends Model implements HasMedia
         return $this->belongsToMany($this->userModel, 'post_like')->withTimestamps();
     }
 
+    public function countLikes()
+    {
+        return $this->likes()->count();
+    }
+
     public function comments()
     {
         return $this->hasMany(PostComment::class);
     }
+
+    public function countComments()
+    {
+        return $this->comments()->count();
+    }
+
+    public function stats()
+    {
+        $likes = $this->countLikes();
+        $comments = $this->countComments();
+
+        return "${likes} Likes - ${comments} Comments";
+    }
+
 
     public function scopePublished($query)
     {
