@@ -18,5 +18,6 @@ return [
      */
     'posts_per_page' => 9,
     'load_more' => true,
+    'searchbar' => true,
 
 ];

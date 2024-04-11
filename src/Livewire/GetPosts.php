@@ -36,6 +36,16 @@ class GetPosts extends Component
      */
     public $showLoadMore; // Boolean
 
+    /**
+     * Show searchbar
+     *
+     * @var bool
+     *
+     * @param bool $showSearch
+     */
+
+    public $showSearch; // Boolean
+
     public function loadMore()
     {
         $this->postsCount += 3;
@@ -51,7 +61,7 @@ class GetPosts extends Component
     #[Computed()]
     public function posts()
     {
-        if (! empty($this->search)) {
+        if (!empty($this->search)) {
             return Post::published()->where(function ($query) {
                 $query->where('title', 'like', "%{$this->search}%")
                     ->orWhere('content', 'like', "%{$this->search}%")
