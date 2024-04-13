@@ -2,12 +2,12 @@
 
 namespace Nody\NodyBlog\Livewire;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
-use Nody\NodyBlog\Models\Tag;
-use Nody\NodyBlog\Models\Post;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
+use Livewire\Component;
 use Nody\NodyBlog\Models\Category;
+use Nody\NodyBlog\Models\Post;
+use Nody\NodyBlog\Models\Tag;
 
 class GetPosts extends Component
 {
@@ -34,9 +34,8 @@ class GetPosts extends Component
      *
      * @var Collection
      *
-     * @param Collection $categories
+     * @param  Collection  $categories
      */
-
     public $categories; // Collection
 
     /**
@@ -44,9 +43,8 @@ class GetPosts extends Component
      *
      * @var int
      *
-     * @param int $selectedCategory
+     * @param  int  $selectedCategory
      */
-
     public $selectedCategory; // Integer
 
     /**
@@ -54,9 +52,8 @@ class GetPosts extends Component
      *
      * @var string
      *
-     * @param string $selectedCategoryName
+     * @param  string  $selectedCategoryName
      */
-
     public $selectedCategoryName; // String
 
     /**
@@ -64,9 +61,8 @@ class GetPosts extends Component
      *
      * @var Collection
      *
-     * @param Collection $tags
+     * @param  Collection  $tags
      */
-
     public $tags; // Collection
 
     /**
@@ -74,9 +70,8 @@ class GetPosts extends Component
      *
      * @var array
      *
-     * @param array $selectedTags
+     * @param  array  $selectedTags
      */
-
     public $selectedTags; // Array
 
     /**
@@ -84,9 +79,8 @@ class GetPosts extends Component
      *
      * @var array
      *
-     * @param array $selectedTagsName
+     * @param  array  $selectedTagsName
      */
-
     public $selectedTagsName; // Array
 
     /**
@@ -94,9 +88,8 @@ class GetPosts extends Component
      *
      * @var string
      *
-     * @param string $selectedSort
+     * @param  string  $selectedSort
      */
-
     public $selectedSort; // String
 
     /**
@@ -112,9 +105,8 @@ class GetPosts extends Component
      *
      * @var array
      *
-     * @param array $activeFilter
+     * @param  array  $activeFilter
      */
-
     public $activeFilter; // Array
 
     public $showLoadMore; // Boolean
@@ -126,7 +118,6 @@ class GetPosts extends Component
      *
      * @param  bool  $showSearch
      */
-
     public function __construct()
     {
         $this->categories = Category::all();
@@ -155,9 +146,11 @@ class GetPosts extends Component
         switch ($request) {
             case 'newest':
                 $this->selectedSort = $request;
+
                 break;
             case 'best-rating':
                 $this->selectedSort = $request;
+
                 break;
             default:
         }
@@ -176,6 +169,7 @@ class GetPosts extends Component
         if (in_array($request, $this->selectedTags)) {
             $this->selectedTags = array_diff($this->selectedTags, [$request]);
             $this->selectedTagsName = array_diff($this->selectedTagsName, [Tag::find($request)->name]);
+
             return;
         } else {
             $this->selectedTags[] = $request;
@@ -202,7 +196,7 @@ class GetPosts extends Component
         }
 
         // Filtrer par tags
-        if (!empty($this->selectedTags)) {
+        if (! empty($this->selectedTags)) {
             $query->ByTags($this->selectedTags)->take($this->postsCount)->get();
         }
 
@@ -213,7 +207,7 @@ class GetPosts extends Component
             $query->BestRating()->take($this->postsCount)->get();
         }
 
-        if (!empty($this->search)) {
+        if (! empty($this->search)) {
             return $query->where(function ($args) {
                 $args->where('title', 'like', "%{$this->search}%")
                     ->orWhere('content', 'like', "%{$this->search}%")

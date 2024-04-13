@@ -2,19 +2,19 @@
 
 namespace Nody\NodyBlog\Filament\Resources;
 
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
-use Nody\NodyBlog\Models\PostComment;
 use Filament\Forms\Components\Textarea;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Nody\NodyBlog\Filament\Resources\CommentResource\Pages\CreateComment;
 use Nody\NodyBlog\Filament\Resources\CommentResource\Pages\EditComment;
 use Nody\NodyBlog\Filament\Resources\CommentResource\Pages\ListComments;
-use Nody\NodyBlog\Filament\Resources\CommentResource\Pages\CreateComment;
+use Nody\NodyBlog\Models\PostComment;
 
 class CommentResource extends Resource
 {
