@@ -2,7 +2,6 @@
 
 namespace Nody\NodyBlog\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User;
 use Nody\NodyBlog\Models\Post;
 
 class BlogController
@@ -21,8 +20,7 @@ class BlogController
 
     public function author($userId)
     {
-        $posts = Post::Published()->where('user_id', $userId)->get();
 
-        return view('nody-blog::author', compact('posts', 'user'));
+        return view('nody-blog::author');
     }
 }
