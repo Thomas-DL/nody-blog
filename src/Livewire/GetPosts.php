@@ -124,7 +124,7 @@ class GetPosts extends Component
      *
      * @var bool
      *
-     * @param bool $showSearch
+     * @param  bool  $showSearch
      */
 
     public function __construct()
