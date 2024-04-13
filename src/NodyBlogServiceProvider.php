@@ -2,16 +2,17 @@
 
 namespace Nody\NodyBlog;
 
-use Filament\Support\Facades\FilamentAsset;
-use Filament\Support\Facades\FilamentIcon;
 use Livewire\Livewire;
-use Nody\NodyBlog\Commands\NodyBlogCommand;
+use Filament\Support\Assets\Css;
 use Nody\NodyBlog\Livewire\GetPosts;
-use Nody\NodyBlog\Livewire\PostComments;
 use Nody\NodyBlog\Livewire\PostLike;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
+use Nody\NodyBlog\Livewire\PostComments;
+use Filament\Support\Facades\FilamentIcon;
+use Filament\Support\Facades\FilamentAsset;
+use Nody\NodyBlog\Commands\NodyBlogCommand;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 
 class NodyBlogServiceProvider extends PackageServiceProvider
 {
@@ -80,6 +81,16 @@ class NodyBlogServiceProvider extends PackageServiceProvider
     protected function getAssetPackageName(): ?string
     {
         return 'nody/nody-blog';
+    }
+
+    /**
+     * @return array<Asset>
+     */
+    protected function getAssets(): array
+    {
+        return [
+            Css::make('nody-blog-styles', __DIR__ . '/../resources/dist/nody-blog.css'),
+        ];
     }
 
     /**
