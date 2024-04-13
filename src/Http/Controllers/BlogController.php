@@ -2,7 +2,6 @@
 
 namespace Nody\NodyBlog\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User;
 use Nody\NodyBlog\Models\Post;
 
 class BlogController
