@@ -642,7 +642,7 @@
                                         class="h-10 w-10 rounded-full bg-gray-100">
                                     <div class="text-sm leading-6">
                                         <p class="font-semibold text-gray-900 dark:text-white">
-                                            <a href="#">
+                                            <a href="{{ route('blog.author', $post->user->id) }}">
                                                 <span class="absolute inset-0"></span>
                                                 {{ $post->user->name }}
                                             </a>

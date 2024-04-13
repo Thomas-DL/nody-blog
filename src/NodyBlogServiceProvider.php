@@ -85,17 +85,6 @@ class NodyBlogServiceProvider extends PackageServiceProvider
     }
 
     /**
-     * @return array<Asset>
-     */
-    protected function getAssets(): array
-    {
-        return [
-            Css::make('nody-blog-styles', __DIR__ . '/../resources/dist/nody-blog.css'),
-            Js::make('nody-blog-scripts', __DIR__ . '/../resources/dist/nody-blog.js'),
-        ];
-    }
-
-    /**
      * @return array<class-string>
      */
     protected function getCommands(): array

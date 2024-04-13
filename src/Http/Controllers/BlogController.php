@@ -2,6 +2,7 @@
 
 namespace Nody\NodyBlog\Http\Controllers;
 
+use Illuminate\Foundation\Auth\User;
 use Nody\NodyBlog\Models\Post;
 
 class BlogController
@@ -16,5 +17,12 @@ class BlogController
         $post = Post::Published()->where('slug', $postSlug)->firstOrFail();
 
         return view('nody-blog::post', compact('post'));
+    }
+
+    public function author($userId)
+    {
+        $posts = Post::Published()->where('user_id', $userId)->get();
+
+        return view('nody-blog::author', compact('posts', 'user'));
     }
 }
