@@ -1,5 +1,8 @@
 <div class="pt-10 mt-10 border-t border-gray-100 dark:border-gray-700 comments-box">
-    <h2 class="mb-5 text-2xl font-semibold text-gray-900">Discussions</h2>
+    <div class="mb-5 flex items-center gap-x-4">
+        <x-heroicon-o-chat-bubble-left-right class="h-8 w-8 text-gray-900 dark:text-white" />
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Discussions</h2>
+    </div>
     @auth
         <textarea wire:model="comment"
             class="w-full p-4 text-sm text-gray-700 dark:text-white border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 focus:outline-none placeholder:text-gray-400"

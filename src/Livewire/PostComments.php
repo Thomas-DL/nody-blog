@@ -20,7 +20,7 @@ class PostComments extends Component
     public function postComment()
     {
         if (auth()->guest()) {
-            return;
+            return redirect()->route('login');
         }
 
         $this->validateOnly('comment');

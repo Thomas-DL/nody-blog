@@ -11,6 +11,11 @@ class PostLike extends Component
 
     public function toggleLike()
     {
+
+        if (auth()->guest()) {
+            return redirect()->route('login');
+        }
+
         $user = auth()->user();
 
         if ($user->hasLiked($this->post)) {

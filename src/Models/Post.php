@@ -92,6 +92,23 @@ class Post extends Model implements HasMedia
         return $query->where('is_published', true);
     }
 
+    public function scopeBestRating($query)
+    {
+        return $query->withCount('likes')->orderBy('likes_count', 'desc');
+    }
+
+    public function scopeByCategory($query, $category)
+    {
+        return $query->where('category_id', $category);
+    }
+
+    public function scopeByTags($query, $tags)
+    {
+        return $query->whereHas('tags', function ($query) use ($tags) {
+            $query->whereIn('tags.id', $tags);
+        });
+    }
+
     public function formatDate()
     {
         return $this->created_at->format('d M Y');

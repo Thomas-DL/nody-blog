@@ -171,9 +171,8 @@ class PostResource extends Resource
                 SelectFilter::make('is_published')
                     ->label('Status')
                     ->options([
-                        'draft' => 'Draft',
-                        'reviewing' => 'Reviewing',
-                        'published' => 'Published',
+                        '0' => 'Draft',
+                        '1' => 'Published',
                     ]),
                 SelectFilter::make('tag_id')
                     ->relationship('tags', 'name')
@@ -189,7 +188,6 @@ class PostResource extends Resource
             ])
             ->actions([
                 EditAction::make(),
-                ViewAction::make(),
                 DeleteAction::make(),
             ])
             ->bulkActions([
