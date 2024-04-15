@@ -22,7 +22,8 @@ class BlogController
     public function author($userId)
     {
         $posts = Post::Published()->where('user_id', $userId)->latest()->paginate(10);
-        $author  = User::findOrFail($userId);
+        $author = User::findOrFail($userId);
+
         return view('nody-blog::author', compact('posts', 'author'));
     }
 }
