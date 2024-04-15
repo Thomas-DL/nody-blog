@@ -109,6 +109,14 @@ class GetPosts extends Component
      */
     public $activeFilter; // Array
 
+    /**
+     * Show load more button
+     *
+     * @var bool
+     *
+     * @param  bool  $showLoadMore
+     */
+
     public $showLoadMore; // Boolean
 
     /**
@@ -118,6 +126,19 @@ class GetPosts extends Component
      *
      * @param  bool  $showSearch
      */
+
+    public $showSearch; // Boolean
+
+    /**
+     * Show filters
+     *
+     * @var bool
+     *
+     * @param  bool  $showFilters
+     */
+
+    public $showFilters; // Boolean
+
     public function __construct()
     {
         $this->categories = Category::all();
@@ -127,8 +148,6 @@ class GetPosts extends Component
         $this->selectedTags = [];
         $this->selectedTagsName = [];
     }
-
-    public $showSearch; // Boolean
 
     public function loadMore()
     {
@@ -196,7 +215,7 @@ class GetPosts extends Component
         }
 
         // Filtrer par tags
-        if (! empty($this->selectedTags)) {
+        if (!empty($this->selectedTags)) {
             $query->ByTags($this->selectedTags)->take($this->postsCount)->get();
         }
 
@@ -207,7 +226,7 @@ class GetPosts extends Component
             $query->BestRating()->take($this->postsCount)->get();
         }
 
-        if (! empty($this->search)) {
+        if (!empty($this->search)) {
             return $query->where(function ($args) {
                 $args->where('title', 'like', "%{$this->search}%")
                     ->orWhere('content', 'like', "%{$this->search}%")

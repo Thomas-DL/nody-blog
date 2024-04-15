@@ -10,7 +10,7 @@
 @endphp
 <x-guest-layout :data="$meta">
     <div class="relative px-6 py-32 lg:px-8 bg-white dark:bg-gray-900">
-        <div id="post-content" class="mx-auto max-w-3xl text-base leading-7 text-gray-700">
+        <div class="mx-auto max-w-3xl text-base leading-7 text-gray-700">
             <div class="mb-10 flex items-center justify-between gap-x-2 text-gray-900 dark:text-gray-100">
                 <div class="flex items-center gap-x-2 hover:text-indigo-600 transition">
                     <x-heroicon-o-arrow-left class="w-4 h-4" />
@@ -26,28 +26,30 @@
                     </div>
                 @endauth
             </div>
-            <p class="text-base font-semibold leading-7 text-indigo-600">{{ $post->category->name }}</p>
-            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-                {{ $post->title }}</h1>
-            <div class="flex justify-between">
-                <div class="flex items-center mt-4 gap-x-2 text-gray-600 dark:text-gray-400">
-                    <x-heroicon-o-calendar class="w-6 h-6" />
-                    Updated {{ $post->updated_at->diffForHumans() }}
+            <div id="post-content">
+                <p class="text-base font-semibold leading-7 text-indigo-600">{{ $post->category->name }}</p>
+                <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                    {{ $post->title }}</h1>
+                <div class="flex justify-between">
+                    <div class="flex items-center mt-4 gap-x-2 text-gray-600 dark:text-gray-400">
+                        <x-heroicon-o-calendar class="w-6 h-6" />
+                        Updated {{ $post->updated_at->diffForHumans() }}
+                    </div>
+                    <div class="flex items-center mt-4 gap-x-2 text-gray-600 dark:text-gray-400">
+                        <x-heroicon-o-clock class="w-6 h-6" />
+                        <span>{{ $post->getReadingTime() }}
+                            min read</span>
+                    </div>
                 </div>
-                <div class="flex items-center mt-4 gap-x-2 text-gray-600 dark:text-gray-400">
-                    <x-heroicon-o-clock class="w-6 h-6" />
-                    <span>{{ $post->getReadingTime() }}
-                        min read</span>
+                <hr class="my-4 dark:border-gray-700">
+                <p class="mt-6 text-xl leading-8 text-gray-900 dark:text-white">{{ $post->excerpt }}</p>
+                <figure class="mt-16">
+                    <img class="aspect-video rounded-xl bg-gray-50 object-cover" src="{{ $post->getThumbnail() }}"
+                        alt="Thumbnail for illustrate this article: {{ $post->title }}">
+                </figure>
+                <div class="mt-10 max-w-2xl post-content text-gray-900 dark:text-white">
+                    {!! $post->content !!}
                 </div>
-            </div>
-            <hr class="my-4 dark:border-gray-700">
-            <p class="mt-6 text-xl leading-8 text-gray-900 dark:text-white">{{ $post->excerpt }}</p>
-            <figure class="mt-16">
-                <img class="aspect-video rounded-xl bg-gray-50 object-cover" src="{{ $post->getThumbnail() }}"
-                    alt="Thumbnail for illustrate this article: {{ $post->title }}">
-            </figure>
-            <div class="mt-10 max-w-2xl post-content text-gray-900 dark:text-white">
-                {!! $post->content !!}
             </div>
             <hr class="my-12 dark:border-gray-700">
             <div class="flex items-center justify-between">
@@ -56,7 +58,7 @@
                         class="h-10 w-10 rounded-full bg-gray-100">
                     <div class="text-sm leading-6">
                         <p class="font-semibold text-gray-900 dark:text-white">
-                            <a href="#">
+                            <a href="{{ route('blog.author', $post->user->id) }}">
                                 <span class="absolute inset-0"></span>
                                 {{ $post->user->name }}
                             </a>
