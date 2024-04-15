@@ -1,10 +1,20 @@
 @php
+    // dd($post->tags);
     $meta = [
         'title' => $post->title,
         'description' => $post->excerpt,
         'author' => $post->user->name,
         'image' => $post->getThumbnail(),
-        'keywords' => 'laravel, php, blog, post, article, ' . $post->category->name,
+        'keywords' =>
+            'blog, post, article, ' .
+            $post->category->name .
+            ', ' .
+            implode(
+                ', ',
+                optional($post->tags)
+                    ->pluck('name')
+                    ->toArray(),
+            ),
         'url' => URL::current(),
     ];
 @endphp

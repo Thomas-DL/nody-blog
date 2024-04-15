@@ -4,9 +4,20 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/nody/nody-blog/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/nody/nody-blog/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/nody/nody-blog.svg?style=flat-square)](https://packagist.org/packages/nody/nody-blog)
 
-
-
 Install a ready to use blog module for Nody boilerplate
+
+## Features
+
+-   CRUD Categories
+-   CRUD Posts
+-   CRUD Tags
+-   CRUD Comments
+-   Create categories or tags in create post view
+-   Responsive Thumbnail
+-   SEO Ready
+-   Users can like or comment your post
+-   Users can share your post by the link or on Twitter / Facebook / LinkedIn
+-   Short for the admin for go back on the dahsboard to edit a post
 
 ## Installation
 
@@ -52,10 +63,35 @@ Make relation betwteen post and user model in User.php
 
 ```php
     use Nody\NodyBlog\Models\Post;
+    use Nody\NodyBlog\Livewire\PostComments;
 
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class, 'post_like')->withTimestamps();
+    }
+
+    public function hasLiked(Post $post)
+    {
+        return $this->likes()->where('post_id', $post->id)->exists();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComments::class);
+    }
+
+    public function getProfileAvatar(): string
+    {
+        if ($this->profile_photo_path) {
+            return $this->profile_photo_path;
+        } else {
+            return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=7F9CF5&background=EBF4FF';
+        }
     }
 ```
 
@@ -74,8 +110,77 @@ Define "Blog" group in navigation:
         ...CategoryResource::getNavigationItems(),
         ...PostResource::getNavigationItems(),
         ...TagResource::getNavigationItems(),
+        ...CommentResource::getNavigationItems(),
     ]);
 ```
+
+Add this to your css files
+
+```css
+@layer components {
+    #post-content {
+        h2 {
+            @apply text-2xl font-bold text-gray-800 dark:text-gray-200 mt-8 mb-4;
+        }
+
+        h3 {
+            @apply text-xl font-bold text-gray-800 dark:text-gray-200 mt-8 mb-4;
+        }
+
+        blockquote {
+            @apply border-l-4 border-gray-300 dark:border-gray-700 pl-4 my-4;
+        }
+
+        pre {
+            @apply my-4 p-4 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg;
+        }
+
+        ul {
+            @apply list-disc list-inside;
+        }
+
+        ol {
+            @apply list-decimal list-inside;
+        }
+
+        figure > a > img {
+            @apply my-4 rounded-xl;
+        }
+
+        a {
+            @apply text-indigo-500 dark:text-indigo-400 underline hover:no-underline;
+        }
+    }
+}
+```
+
+Call your posts on custom view by this way:
+
+```html
+{{-- Posts section --}}
+<div class="bg-white dark:bg-gray-900">
+    <div class="container mx-auto">
+        <h2
+            class="text-3xl text-center font-semibold text-gray-900 dark:text-white"
+        >
+            The Blog section
+        </h2>
+        <livewire:get-posts
+            postsCount="3"
+            showLoadMore="0"
+            showSearch="0"
+            showFilters="0"
+        />
+    </div>
+</div>
+```
+
+⚠️ Don't miss a parameter to the livewire component:
+
+-   postsCount="3" ➡️ How many posts wish you show ?
+-   showLoadMore="0" ➡️ Do you want a button for loading more posts ?
+-   showSearch="0" ➡️ Do you want a search-bar for search post by title, content or excerpt ?
+-   showFilter="0" ➡️ Do you want a filter-bar for search post by category or tags ?
 
 ## Changelog
 
@@ -87,7 +192,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Thomas-DL](https://github.com/Thomas-DL)
+-   [Thomas-DL](https://github.com/Thomas-DL)
 
 ## License
 
