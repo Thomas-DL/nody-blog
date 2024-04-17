@@ -31,6 +31,13 @@ class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
+    protected static ?string $navigationLabel = 'nody-blog::filament.post_resource';
+
+    public static function getNavigationLabel(): string
+    {
+        return __(static::$navigationLabel);
+    }
+
     protected static ?string $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 2;

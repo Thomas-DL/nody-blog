@@ -18,6 +18,7 @@ Install a ready to use blog module for Nody boilerplate
 -   Users can like or comment your post
 -   Users can share your post by the link or on Twitter / Facebook / LinkedIn
 -   Short for the admin for go back on the dahsboard to edit a post
+-   English 🇬🇧 & French 🇫🇷
 
 ## Installation
 
@@ -41,6 +42,12 @@ php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServicePr
 php artisan migrate
 ```
 
+You also can override the translation if you want or create a new by publish the lang folder:
+
+````bash
+php artisan vendor:publish --provider="Nody\NodyBlog\NodyBlogServiceProvider" --tag="nody-blog-translations"
+```
+
 Setup media disk for posts thumbnails in filesystems.php config file:
 
 ```php
@@ -51,7 +58,7 @@ Setup media disk for posts thumbnails in filesystems.php config file:
             'visibility' => 'public',
             'throw' => false,
         ],
-```
+````
 
 Create images folder in storage folder and make a symbolic link
 
@@ -83,15 +90,6 @@ Make relation betwteen post and user model in User.php
     public function comments()
     {
         return $this->hasMany(PostComments::class);
-    }
-
-    public function getProfileAvatar(): string
-    {
-        if ($this->profile_photo_path) {
-            return $this->profile_photo_path;
-        } else {
-            return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=7F9CF5&background=EBF4FF';
-        }
     }
 ```
 
@@ -152,6 +150,12 @@ Add this to your css files
         }
     }
 }
+```
+
+Maybe you will restart vite for compile the css
+
+```bash
+npm run dev
 ```
 
 Call your posts on custom view by this way:

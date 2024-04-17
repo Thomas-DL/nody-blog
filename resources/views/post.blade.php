@@ -25,15 +25,17 @@
                 <div class="flex items-center gap-x-2 hover:text-indigo-600 transition">
                     <x-heroicon-o-arrow-left class="w-4 h-4" />
                     <a href="{{ route('blog.index') }}" alt="Backlink for return on posts list page"
-                        title="Back to posts list">Back to posts list</a>
+                        title="{{ __('nody-blog::post.back_to_posts_list') }}">{{ __('nody-blog::post.back_to_posts_list') }}</a>
                 </div>
                 @auth
-                    <div class="flex items-center gap-x-2 hover:text-indigo-600 transition">
-                        <x-heroicon-o-pencil class="w-4 h-4" />
-                        <a href="{{ route('filament.admin.resources.posts.edit', $post->id) }}">
-                            Éditer l'article
-                        </a>
-                    </div>
+                    @role('Operator|Admin|Moderator|Writer')
+                        <div class="flex items-center gap-x-2 hover:text-indigo-600 transition">
+                            <x-heroicon-o-pencil class="w-4 h-4" />
+                            <a href="{{ route('filament.admin.resources.posts.edit', $post->id) }}">
+                                {{ __('nody-blog::post.edit_post') }}
+                            </a>
+                        </div>
+                    @endrole
                 @endauth
             </div>
             <div id="post-content">
@@ -43,12 +45,14 @@
                 <div class="flex justify-between">
                     <div class="flex items-center mt-4 gap-x-2 text-gray-600 dark:text-gray-400">
                         <x-heroicon-o-calendar class="w-6 h-6" />
-                        Updated {{ $post->updated_at->diffForHumans() }}
+                        {{ __('nody-blog::post.updated') }} {{ $post->updated_at->diffForHumans() }}
                     </div>
                     <div class="flex items-center mt-4 gap-x-2 text-gray-600 dark:text-gray-400">
                         <x-heroicon-o-clock class="w-6 h-6" />
-                        <span>{{ $post->getReadingTime() }}
-                            min read</span>
+                        <span>
+                            {{ $post->getReadingTime() }}
+                            {{ __('nody-blog::post.reading_time') }}
+                        </span>
                     </div>
                 </div>
                 <hr class="my-4 dark:border-gray-700">
@@ -73,7 +77,11 @@
                                 {{ $post->user->name }}
                             </a>
                         </p>
-                        <p class="text-gray-600 dark:text-gray-400">Co-Founder / CTO</p>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            @if ($post->user->hasRole('Operator|Admin|Moderator|Writer'))
+                                {{ $post->user->roles->first()->name }}
+                            @endif
+                        </p>
                     </div>
                 </div>
                 <div class="flex gap-x-4 items-center">
@@ -95,7 +103,7 @@
                                     class="text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 group flex items-center px-4 py-2 text-sm cursor-pointer"
                                     role="menuitem" tabindex="-1" id="menu-item-0">
                                     <x-heroicon-o-link class="mr-3 h-5 w-5 text-gray-400 group-hover:text-indigo-500" />
-                                    Copy link
+                                    {{ __('nody-blog::post.copy_link') }}
                                 </span>
                             </div>
                             <div class="py-1" role="none">
@@ -103,19 +111,19 @@
                                     class="text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 group flex items-center px-4 py-2 text-sm"
                                     role="menuitem" tabindex="-1" id="menu-item-2">
                                     <x-fab-linkedin-in class="mr-3 h-5 w-5 text-gray-400 group-hover:text-indigo-500" />
-                                    Share on LinkedIn
+                                    {{ __('nody-blog::post.share_on_linkedin') }}
                                 </a>
                                 <a href="https://twitter.com/intent/tweet?text={{ $post->title }}&url={{ URL::current() }}"
                                     class="text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 group flex items-center px-4 py-2 text-sm"
                                     role="menuitem" tabindex="-1" id="menu-item-3">
                                     <x-fab-x-twitter class="mr-3 h-5 w-5 text-gray-400 group-hover:text-indigo-500" />
-                                    Share on Twitter
+                                    {{ __('nody-blog::post.share_on_twitter') }}
                                 </a>
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}&quote={{ $post->title }}"
                                     class="text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 group flex items-center px-4 py-2 text-sm"
                                     role="menuitem" tabindex="-1" id="menu-item-3">
                                     <x-fab-facebook-f class="mr-3 h-5 w-5 text-gray-400 group-hover:text-indigo-500" />
-                                    Share on Facebook
+                                    {{ __('nody-blog::post.share_on_facebook') }}
                                 </a>
                             </div>
                         </div>

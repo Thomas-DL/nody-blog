@@ -9,10 +9,12 @@
             cols="30" rows="7"></textarea>
         <button wire:click="postComment"
             class="inline-flex items-center justify-center h-10 px-4 mt-3 font-medium tracking-wide text-white transition duration-200 bg-indigo-600 rounded-lg hover:bg-indigo-500 focus:shadow-outline focus:outline-none">
-            Post Comment
+            {{ __('nody-blog::post.post_comment') }}
         </button>
     @else
-        <a wire:navigate class="py-1 text-indigo-600 underline" href="{{ route('login') }}"> Login to Post Comments</a>
+        <a wire:navigate class="py-1 text-indigo-600 underline" href="{{ route('login') }}">
+            {{ __('nody-blog::post.login_to_post_comment') }}
+        </a>
     @endauth
     <div class="px-3 py-2 mt-5 user-comments">
         @forelse($this->comments as $comment)
@@ -29,7 +31,7 @@
             </div>
         @empty
             <div class="text-center text-gray-500 dark:text-gray-400">
-                <span> No Comments Posted</span>
+                <span>{{ __('nody-blog::post.no_comments') }}</span>
             </div>
         @endforelse
     </div>

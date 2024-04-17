@@ -20,6 +20,13 @@ class CommentResource extends Resource
 {
     protected static ?string $model = PostComment::class;
 
+    protected static ?string $navigationLabel = 'nody-blog::filament.comment_resource';
+
+    public static function getNavigationLabel(): string
+    {
+        return __(static::$navigationLabel);
+    }
+
     protected static ?string $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 4;

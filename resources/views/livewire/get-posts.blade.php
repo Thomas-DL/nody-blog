@@ -5,7 +5,8 @@
             @if ($this->showSearch && $this->showSearch === '1')
                 <div class="flex px-12 mb-10 justify-center max-w-lg lg:px-0 mx-4 sm:mx-auto">
                     <div class="relative w-full mt-2">
-                        <input type="text" name="search" id="search" placeholder="Search" wire:model.live="search"
+                        <input type="text" name="search" id="search"
+                            placeholder="{{ __('nody-blog::blog.search_placeholder') }}" wire:model.live="search"
                             class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -19,7 +20,8 @@
                             <div
                                 class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white dark:bg-gray-900 py-4 pb-12 shadow-xl">
                                 <div class="flex items-center justify-between px-4 mb-4">
-                                    <h2 class="text-lg font-medium text-gray-900 dark:text-white">Filters</h2>
+                                    <h2 class="text-lg font-medium text-gray-900 dark:text-white">
+                                        {{ __('nody-blog::blog.filters') }}</h2>
                                     <button type="button" @click="open = false"
                                         class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white dark:bg-gray-800 p-2 text-gray-400">
                                         <span class="sr-only">Close menu</span>
@@ -39,7 +41,8 @@
                                         <button type="button" @click="openCategories = !openCategories"
                                             class="flex w-full items-center justify-between bg-white dark:bg-gray-900 px-2 py-3 text-sm text-gray-400 dark:text-white"
                                             aria-controls="filter-section-0" aria-expanded="false">
-                                            <span class="font-medium text-gray-900 dark:text-white">Category</span>
+                                            <span
+                                                class="font-medium text-gray-900 dark:text-white">{{ __('nody-blog::blog.categories') }}</span>
                                             <span class="ml-6 flex items-center">
                                                 <svg class="rotate-0 h-5 w-5 transform" viewBox="0 0 20 20"
                                                     fill="currentColor" aria-hidden="true">
@@ -76,7 +79,8 @@
                                         <button type="button" @click="openTags = !openTags"
                                             class="flex w-full items-center justify-between bg-white dark:bg-gray-900 px-2 py-3 text-sm text-gray-400 dark:text-white"
                                             aria-controls="filter-section-0" aria-expanded="false">
-                                            <span class="font-medium text-gray-900 dark:text-white">Tags</span>
+                                            <span
+                                                class="font-medium text-gray-900 dark:text-white">{{ __('nody-blog::blog.tags') }}</span>
                                             <span class="ml-6 flex items-center">
                                                 <svg class="rotate-0 h-5 w-5 transform" viewBox="0 0 20 20"
                                                     fill="currentColor" aria-hidden="true">
@@ -112,7 +116,7 @@
 
                     <!-- Filters -->
                     <section aria-labelledby="filter-heading"">
-                        <h2 id="filter-heading" class="sr-only">Filters</h2>
+                        <h2 id="filter-heading" class="sr-only">{{ __('nody-blog::blog.filters') }}</h2>
 
                         <div class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 pb-4">
                             <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -152,7 +156,7 @@
                                 <!-- Mobile filter dialog toggle, controls the 'mobileFiltersOpen' state. -->
                                 <button type="button" @click="open = !open"
                                     class="inline-block text-sm font-medium text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200 sm:hidden">
-                                    Filters
+                                    {{ __('nody-blog::blog.filters') }}
                                 </button>
 
                                 <div class="hidden sm:block">
@@ -163,7 +167,7 @@
                                                 <button type="button" @click="open = !open"
                                                     class="group inline-flex justify-center text-sm font-medium text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200"
                                                     aria-expanded="false">
-                                                    <span>Category</span>
+                                                    <span>{{ __('nody-blog::blog.categories') }}</span>
                                                     @if (!empty($this->selectedCategory))
                                                         <span
                                                             class="ml-1.5 rounded border border-gray-300 dark:border-indigo-500 bg-gray-200 dark:bg-indigo-500/30 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700 dark:text-white">
@@ -206,7 +210,7 @@
                                                 <button type="button" @click="open = !open"
                                                     class="group inline-flex justify-center text-sm font-medium text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200"
                                                     aria-expanded="false">
-                                                    <span>Tags</span>
+                                                    <span>{{ __('nody-blog::blog.tags') }}</span>
                                                     @if (!empty($this->selectedTags))
                                                         <span
                                                             class="ml-1.5 rounded border border-gray-300 dark:border-indigo-500 bg-gray-200 dark:bg-indigo-500/30 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700 dark:text-white">
@@ -257,12 +261,12 @@
                                 @if ($this->selectedCategoryName || $this->selectedTagsName)
                                     <h3 class="text-sm font-medium text-gray-500 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-500 transition cursor-pointer"
                                         wire:click="clearFilters">
-                                        Clear all filters
+                                        {{ __('nody-blog::blog.clear_filters') }}
                                         <span class="sr-only">, active</span>
                                     </h3>
                                 @else
                                     <h3 class="text-sm font-medium text-gray-500 dark:text-white">
-                                        Filters
+                                        {{ __('nody-blog::blog.filters') }}
                                         <span class="sr-only">, active</span>
                                     </h3>
                                 @endif
@@ -298,7 +302,7 @@
             <div
                 class="flex flex-col gap-y-4 p-4 justify-center items-center bg-gray-100 dark:bg-gray-800 rounded-lg text-center">
                 <x-heroicon-o-inbox class="w-12 h-12 text-gray-700 dark:text-white" />
-                <p class="text-gray-700 dark:text-white text-xl">Empty posts</p>
+                <p class="text-gray-700 dark:text-white text-xl">{{ __('nody-blog::blog.empty_posts') }}</p>
             </div>
         </div>
     @else
@@ -306,8 +310,8 @@
             @if ($this->showSearch && $this->showSearch === '1')
                 <div class="flex justify-center px-12 max-w-lg lg:px-0 mx-auto">
                     <div class="relative w-full mt-2">
-                        <input type="text" name="search" id="search" placeholder="Search"
-                            wire:model.live="search"
+                        <input type="text" name="search" id="search"
+                            placeholder="{{ __('nody-blog::blog.search_placeholder') }}" wire:model.live="search"
                             class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
@@ -321,7 +325,8 @@
                             <div
                                 class="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white dark:bg-gray-900 py-4 pb-12 shadow-xl">
                                 <div class="flex items-center justify-between px-4 mb-4">
-                                    <h2 class="text-lg font-medium text-gray-900 dark:text-white">Filters</h2>
+                                    <h2 class="text-lg font-medium text-gray-900 dark:text-white">
+                                        {{ __('nody-blog::blog.filters') }}</h2>
                                     <button type="button" @click="open = false"
                                         class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white dark:bg-gray-800 p-2 text-gray-400">
                                         <span class="sr-only">Close menu</span>
@@ -341,7 +346,9 @@
                                         <button type="button" @click="openCategories = !openCategories"
                                             class="flex w-full items-center justify-between bg-white dark:bg-gray-900 px-2 py-3 text-sm text-gray-400 dark:text-white"
                                             aria-controls="filter-section-0" aria-expanded="false">
-                                            <span class="font-medium text-gray-900 dark:text-white">Category</span>
+                                            <span class="font-medium text-gray-900 dark:text-white">
+                                                {{ __('nody-blog::blog.categories') }}
+                                            </span>
                                             <span class="ml-6 flex items-center">
                                                 <svg class="rotate-0 h-5 w-5 transform" viewBox="0 0 20 20"
                                                     fill="currentColor" aria-hidden="true">
@@ -378,7 +385,9 @@
                                         <button type="button" @click="openTags = !openTags"
                                             class="flex w-full items-center justify-between bg-white dark:bg-gray-900 px-2 py-3 text-sm text-gray-400 dark:text-white"
                                             aria-controls="filter-section-0" aria-expanded="false">
-                                            <span class="font-medium text-gray-900 dark:text-white">Tags</span>
+                                            <span class="font-medium text-gray-900 dark:text-white">
+                                                {{ __('nody-blog::blog.tags') }}
+                                            </span>
                                             <span class="ml-6 flex items-center">
                                                 <svg class="rotate-0 h-5 w-5 transform" viewBox="0 0 20 20"
                                                     fill="currentColor" aria-hidden="true">
@@ -414,7 +423,7 @@
 
                     <!-- Filters -->
                     <section aria-labelledby="filter-heading"">
-                        <h2 id="filter-heading" class="sr-only">Filters</h2>
+                        <h2 id="filter-heading" class="sr-only">{{ __('nody-blog::blog.filters') }}</h2>
 
                         <div class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 pb-4">
                             <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -423,7 +432,7 @@
                                         <button type="button" @click="open = !open"
                                             class="group inline-flex justify-center text-sm font-medium text-gray-700 dark:text-white  hover:text-gray-900 dark:hover:text-gray-200"
                                             id="menu-button" aria-expanded="false" aria-haspopup="true">
-                                            Sort
+                                            {{ __('nody-blog::blog.sort_by') }}
                                             <svg class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 dark:text-gray-200 group-hover:text-gray-500 dark:group-hover:text-gray-200"
                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd"
@@ -440,12 +449,12 @@
                                             <span wire:click="sortBy('best-rating')"
                                                 class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-500 transition block px-4 py-2 text-sm cursor-pointer"
                                                 role="menuitem" tabindex="-1" id="menu-item-1">
-                                                Best Rating
+                                                {{ __('nody-blog::blog.best_rating') }}
                                             </span>
                                             <span wire:click="sortBy('newest')"
                                                 class="text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-500 transition block px-4 py-2 text-sm cursor-pointer"
                                                 role="menuitem" tabindex="-1" id="menu-item-2">
-                                                Newest
+                                                {{ __('nody-blog::blog.newest') }}
                                             </span>
                                         </div>
                                     </div>
@@ -454,7 +463,7 @@
                                 <!-- Mobile filter dialog toggle, controls the 'mobileFiltersOpen' state. -->
                                 <button type="button" @click="open = !open"
                                     class="inline-block text-sm font-medium text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200 sm:hidden">
-                                    Filters
+                                    {{ __('nody-blog::blog.filters') }}
                                 </button>
 
                                 <div class="hidden sm:block">
@@ -466,7 +475,7 @@
                                                 <button type="button" @click="open = !open"
                                                     class="group inline-flex justify-center text-sm font-medium text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200"
                                                     aria-expanded="false">
-                                                    <span>Category</span>
+                                                    <span>{{ __('nody-blog::blog.categories') }}</span>
                                                     @if (!empty($this->selectedCategory))
                                                         <span
                                                             class="ml-1.5 rounded border border-gray-300 dark:border-indigo-500 bg-gray-200 dark:bg-indigo-500/30 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700 dark:text-white">
@@ -510,7 +519,7 @@
                                                 <button type="button" @click="open = !open"
                                                     class="group inline-flex justify-center text-sm font-medium text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-200"
                                                     aria-expanded="false">
-                                                    <span>Tags</span>
+                                                    <span>{{ __('nody-blog::blog.tags') }}</span>
                                                     @if (!empty($this->selectedTags))
                                                         <span
                                                             class="ml-1.5 rounded border border-gray-300 dark:border-indigo-500 bg-gray-200 dark:bg-indigo-500/30 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700 dark:text-white">
@@ -561,12 +570,12 @@
                                 @if ($this->selectedCategoryName || $this->selectedTagsName)
                                     <h3 class="text-sm font-medium text-gray-500 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-500 transition cursor-pointer"
                                         wire:click="clearFilters">
-                                        Clear all filters
+                                        {{ __('nody-blog::blog.clear_filters') }}
                                         <span class="sr-only">, active</span>
                                     </h3>
                                 @else
                                     <h3 class="text-sm font-medium text-gray-500 dark:text-white">
-                                        Filters
+                                        {{ __('nody-blog::blog.filters') }}
                                         <span class="sr-only">, active</span>
                                     </h3>
                                 @endif
@@ -634,8 +643,10 @@
                                 </div>
                                 <div class="flex justify-end gap-x-2 text-xs text-gray-600 dark:text-gray-400">
                                     <x-heroicon-o-clock class="w-4 h-4" />
-                                    <span>{{ $post->getReadingTime() }}
-                                        min read</span>
+                                    <span>
+                                        {{ $post->getReadingTime() }}
+                                        {{ __('nody-blog::blog.reading_time') }}
+                                    </span>
                                 </div>
                                 <div class="group relative">
                                     <h3
@@ -659,7 +670,12 @@
                                                 {{ $post->user->name }}
                                             </a>
                                         </p>
-                                        <p class="text-gray-600 dark:text-gray-400">Co-Founder / CTO</p>
+                                        <p class="text-gray-600 dark:text-gray-400">
+                                            @if ($post->user->hasRole('Operator|Admin|Moderator|Writer'))
+                                                {{ $post->user->roles->first()->name }}
+                                            @endif
+
+                                        </p>
                                     </div>
                                 </div>
                             </div>
