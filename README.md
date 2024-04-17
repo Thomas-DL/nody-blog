@@ -44,7 +44,7 @@ php artisan migrate
 
 You also can override the translation if you want or create a new by publish the lang folder:
 
-````bash
+```bash
 php artisan vendor:publish --provider="Nody\NodyBlog\NodyBlogServiceProvider" --tag="nody-blog-translations"
 ```
 
@@ -201,4 +201,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-````
+
+```
+
+```
