@@ -17,7 +17,7 @@ Install a ready to use blog module for Nody boilerplate
 -   SEO Ready
 -   Users can like or comment your post
 -   Users can share your post by the link or on Twitter / Facebook / LinkedIn
--   Short for the admin for go back on the dahsboard to edit a post
+-   Shortcut for the admin for go back on the dahsboard to edit a post
 -   English 🇬🇧 & French 🇫🇷
 
 ## Installation
@@ -58,7 +58,7 @@ Setup media disk for posts thumbnails in filesystems.php config file:
             'visibility' => 'public',
             'throw' => false,
         ],
-````
+```
 
 Create images folder in storage folder and make a symbolic link
 
@@ -201,3 +201,4 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+````
