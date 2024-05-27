@@ -121,7 +121,7 @@ class Post extends Model implements HasMedia
 
     public function getReadingTime()
     {
-        $mins = round(str_word_count($this->body) / 250);
+        $mins = round(str_word_count($this->content) / 250);
 
         return ($mins < 1) ? 1 : $mins;
     }
