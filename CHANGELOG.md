@@ -2,6 +2,10 @@
 
 All notable changes to `nody-blog` will be documented in this file.
 
+## 1.0.1 - 2024-05-27
+
+**Full Changelog**: https://github.com/Thomas-DL/nody-blog/compare/1.0.0...1.0.1
+
 ## v1.0.1 - 2024-04-08
 
 **Full Changelog**: https://github.com/Thomas-DL/nody-blog/compare/v1.0.0...v1.0.1
